@@ -1,0 +1,29 @@
+{
+    "remotePath": "./",
+    "host": "linux305.unoeuro.com",
+    "username": "codenoury.se",
+    "password": "ch2neGpk3Dzd",
+    "port": 21,
+    "secure": false,
+    "protocol": "ftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store",
+        "\\.scss",
+        "\\.css.map"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ".php, .js, .css, .html, .svg, .jpg, .png, .jpeg"
+        ],
+        "path": ""
+    }
+}
