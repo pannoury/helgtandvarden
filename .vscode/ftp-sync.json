@@ -1,8 +1,8 @@
 {
     "remotePath": "./",
-    "host": "linux305.unoeuro.com",
-    "username": "codenoury.se",
-    "password": "ch2neGpk3Dzd",
+    "host": "linux282.unoeuro.com",
+    "username": "helgtandvaarden.se",
+    "password": "ckbz6gxB3taG",
     "port": 21,
     "secure": false,
     "protocol": "ftp",

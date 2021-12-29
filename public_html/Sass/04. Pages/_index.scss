@@ -74,12 +74,50 @@
     padding: 30px 40px;
 }
 .content-w-80{
+    @media screen and (max-width: 580px){
+        width: 95%;
+    }
     .col{
+        h2{
+            margin-bottom: 10px;
+        }
         p{
             text-align: center;
             margin: auto;
             font-size: 22px;
         }
     }
+    .google-embed{
+        margin-top: 20px;
+        width: 100%;
+        height: 500px;
+    }
+}
 
+.fade-in{
+    opacity: 0;
+    &.appear{
+        animation: appear 1s linear forwards;
+        animation-delay: 400ms;
+        @keyframes appear {
+            0%{
+                opacity: 0;
+                transform: translateY(50);
+            }
+            50%{
+                opacity: 0.5;
+                transform: translateY(25);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+    }
+}
+.load{
+    opacity: 0;
+    transition: opacity 600ms linear;
 }

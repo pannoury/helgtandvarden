@@ -3080,8 +3080,64 @@ h5, .h5 {
   padding: 30px 40px;
 }
 
+@media screen and (max-width: 580px) {
+  .content-w-80 {
+    width: 95%;
+  }
+}
+.content-w-80 .col h2 {
+  margin-bottom: 10px;
+}
 .content-w-80 .col p {
   text-align: center;
   margin: auto;
   font-size: 22px;
+}
+.content-w-80 .google-embed {
+  margin-top: 20px;
+  width: 100%;
+  height: 500px;
+}
+
+.fade-in {
+  opacity: 0;
+}
+.fade-in.appear {
+  -webkit-animation: appear 1s linear forwards;
+          animation: appear 1s linear forwards;
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+@-webkit-keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(50);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(25);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(50);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(25);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.load {
+  opacity: 0;
+  transition: opacity 600ms linear;
 }/*# sourceMappingURL=style.css.map */
