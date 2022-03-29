@@ -3002,8 +3002,9 @@ h5, .h5 {
 }
 @media screen and (max-width: 620px) {
   .index-hero {
-    padding-top: 64px;
+    padding-top: 70px;
     height: 60vh;
+    justify-content: center;
     flex-direction: column-reverse;
   }
   .index-hero .col {
@@ -3016,13 +3017,12 @@ h5, .h5 {
        object-fit: cover;
     z-index: 3;
     width: 100%;
-    height: 80vh;
+    height: 60vh;
     filter: brightness(40%);
   }
 }
 @media screen and (min-width: 620px) {
   .index-hero {
-    display: flex;
     justify-content: center;
     min-height: 80vh;
   }
@@ -3071,6 +3071,9 @@ h5, .h5 {
     margin-top: 40px;
     margin-bottom: 40px;
   }
+}
+.index-hero .button-wrapper a {
+  font-size: 22px;
 }
 .index-hero .button-wrapper a:nth-child(1) {
   margin-right: 20px;
