@@ -1,8 +1,11 @@
+//import * as cookie from "https://helgtandvården.se/JS/cookie.js;"
+
 window.onload = () => {
     navbarComponents.navbarScrollEffect()
     navbarComponents.addEventListeners()
     sectionScrollAnimations();
     appearEffect()
+    //popUpWindow(cookie.getCookie("formPopUp"))
 }
 
 
@@ -51,6 +54,9 @@ const navbarComponents = {
     }
 }
 
+function popUpWindow(cookie){
+    console.log(cookie)
+}
 
 function appearEffect(){
     var loadElements = document.querySelectorAll('.load')
@@ -58,7 +64,6 @@ function appearEffect(){
         loadElements[i].style.cssText = "opacity: 1;"
     }
 }
-
 
 function sectionScrollAnimations(){
     const faders = document.querySelectorAll('.fade-in');
@@ -97,4 +102,3 @@ function sectionScrollAnimations(){
     })
     */
 }
-
