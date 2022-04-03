@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js';
+=======
+//import * as cookie from "https://helgtandvården.se/JS/cookie.js;"
+>>>>>>> a6c9c4eb3ef7e758a5f573998a7eb671f1af2cb6
 
 window.onload = () => {
     window.scrollTo({
@@ -10,6 +14,7 @@ window.onload = () => {
     navbarComponents.addEventListeners()
     sectionScrollAnimations();
     appearEffect()
+<<<<<<< HEAD
     fetchGoogleReviews()
 
     setTimeout(() => {
@@ -20,6 +25,9 @@ window.onload = () => {
             document.body.style.overflowY = "";
         })
     }, 3000)
+=======
+    //popUpWindow(cookie.getCookie("formPopUp"))
+>>>>>>> a6c9c4eb3ef7e758a5f573998a7eb671f1af2cb6
 }
 
 const swiper = new Swiper('.swiper', {
@@ -73,6 +81,9 @@ const navbarComponents = {
     }
 }
 
+function popUpWindow(cookie){
+    console.log(cookie)
+}
 
 function appearEffect(){
     var loadElements = document.querySelectorAll('.load')
@@ -80,7 +91,6 @@ function appearEffect(){
         loadElements[i].style.cssText = "opacity: 1;"
     }
 }
-
 
 function sectionScrollAnimations(){
     const faders = document.querySelectorAll('.fade-in');
@@ -118,6 +128,7 @@ function sectionScrollAnimations(){
         appearOnScroll.observe(popups)
     })
     */
+<<<<<<< HEAD
 }
 
 function fetchGoogleReviews(){
@@ -135,4 +146,6 @@ function fetchGoogleReviews(){
     .fail((error) => {
         console.log(error)
     })
+=======
+>>>>>>> a6c9c4eb3ef7e758a5f573998a7eb671f1af2cb6
 }
