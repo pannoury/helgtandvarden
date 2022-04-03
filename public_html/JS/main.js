@@ -1,9 +1,31 @@
+import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js';
+
 window.onload = () => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
     navbarComponents.navbarScrollEffect()
     navbarComponents.addEventListeners()
     sectionScrollAnimations();
     appearEffect()
+    fetchGoogleReviews()
+
+    setTimeout(() => {
+        document.getElementById('popupWindow').setAttribute('aria-label', 'display')
+        document.body.style.overflowY = "hidden";
+        document.getElementById('popupClose').addEventListener('click', (e) => {
+            e.target.parentElement.parentElement.parentElement.setAttribute('aria-label', 'hidden')
+            document.body.style.overflowY = "";
+        })
+    }, 3000)
 }
+
+const swiper = new Swiper('.swiper', {
+    direction: 'vertical',
+    loop: true,
+})
 
 
 const navbarComponents = {
@@ -98,3 +120,19 @@ function sectionScrollAnimations(){
     */
 }
 
+function fetchGoogleReviews(){
+    $.ajax({
+        url: "https://helgtandvården.se/php/google_reviews.php",
+        method: "GET",
+    })
+    .done((data, textStatus, jqXHR) => {
+        if(jqXHR.status === 200){
+            console.log(JSON.parse(data), data)
+        } else{
+
+        }
+    })
+    .fail((error) => {
+        console.log(error)
+    })
+}
