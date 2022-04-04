@@ -3036,7 +3036,7 @@ h5, .h5 {
   }
   .index-hero .col p {
     width: min(400px, 50%);
-    line-height: 1.4;
+    line-height: 2;
     color: #bbbbbb;
   }
   .index-hero .col h1 {
@@ -3225,8 +3225,44 @@ h5, .h5 {
   cursor: pointer;
 }
 
+.swiper {
+  overflow-y: hidden;
+  margin: 80px 0;
+}
+.swiper:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.swiper .swiper-wrapper {
+  transition: transform 600ms ease;
+}
+@media screen and (max-width: 400px) {
+  .swiper .swiper-wrapper .review-box {
+    width: calc(90vw - 40px);
+    margin-left: 5vw;
+  }
+}
+@media screen and (min-width: 400px) {
+  .swiper .swiper-wrapper .review-box {
+    width: 400px;
+    margin: 0 10px;
+  }
+}
 .swiper .swiper-wrapper .review-box {
+  display: flex;
+  flex-direction: column;
   background-color: #2A5BCE;
   padding: 10px 20px;
   border-radius: 8px;
+  height: 200px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.swiper .swiper-wrapper .review-box .reviewer {
+  font-weight: 900;
+}
+.swiper .swiper-wrapper .review-box .rating-wrapper {
+  margin-top: auto;
 }/*# sourceMappingURL=style.css.map */

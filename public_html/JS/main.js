@@ -129,6 +129,7 @@ function fetchGoogleReviews(){
         if(jqXHR.status === 200){
             const responseData = JSON.parse(data)
             var swiperWrapper = document.querySelector('.swiper-wrapper')
+            swiperWrapper.setAttribute('slides', responseData.length)
 
             for(let i=0; i < responseData.length; i++){
                 swiperWrapper.innerHTML += 
@@ -146,28 +147,82 @@ function fetchGoogleReviews(){
                 </div>
                 `
             }
+            var slideWidth = swiperWrapper.querySelector('.swiper-slide').clientWidth
+            swiperWrapper.style.width = `${(responseData.length * slideWidth) + (responseData.length * 20)}px`
+            var swiperParent = document.querySelector('.swiper')
 
-            const reviewSwiper = new Swiper('.swiper', {
-                direction: "horizontal",
-                loop: true,
-            
-                breakPoints: {
-                    500: {
-                        slidesPerView: 1
-                    },
-                    1000: {
-                        slidesPerView: 2
-                    },
-                    1400: {
-                        slidesPerView: 3
-                    }
-                }
-            })
+            swiperParent.addEventListener('mousedown', (e) => {swiper(e)})
+            swiperParent.addEventListener('mouseup', (e) => {swiper(e)})
+            swiperParent.addEventListener('mousemove', (e) => {swiper(e)})
+    
+            swiperWrapper.addEventListener('touchmove', (e) => {swiper(e)})
+            swiperWrapper.addEventListener('touchstart', (e) =>{swiper(e)})
+            swiperWrapper.addEventListener('touchend', (e)=>{swiper(e)})
         } else{
 
         }
     })
     .fail((error) => {
+        document.querySelector('.swiper').remove();
         console.log(error)
     })
+}
+
+let mouseDown = false;
+let startPosition
+
+//Mobile Swiper
+let touchDown = false
+let startPos = 0
+let currentTranslate = 0
+let prevTranslate = 0
+
+function swiper(e){
+    var swiperWrapper = document.querySelector('.swiper-wrapper')
+    let swiperPosition = parseInt(swiperWrapper.getAttribute('data-slide'))
+    var sliders = document.querySelectorAll('.swiper-slide')
+    if (swiperWrapper.clientWidth <= swiperWrapper.parentElement.clientWidth) return
+
+    if(e.type === "mousemove"){
+
+    } else if(e.type === "mousedown"){
+        mouseDown = true
+        startPosition = e.clientX
+    } else if(e.type === "mouseup"){
+        mouseDown = false
+        let movedBy = startPosition - e.clientX
+        if (movedBy < -100 && swiperPosition !== 0) {
+            swiperWrapper.setAttribute('data-slide', (swiperPosition - 1))
+            let currentTranslate = ((swiperPosition - 1) * 460)
+            swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
+        }
+        if (movedBy > 100 && swiperPosition < sliders.length - 1){
+            swiperWrapper.setAttribute('data-slide', (swiperPosition + 1))
+            let currentTranslate = ((swiperPosition + 1) * 460)
+            swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
+        }
+    }
+
+    if(e.type === "touchmove"){
+        var currentPosition = e.touches[0].clientX
+        var deltaX = startPos - currentPosition
+        swiperWrapper.style.transform = `translateX(-${Math.abs(prevTranslate) + deltaX}px)`
+        currentTranslate = prevTranslate + currentPosition - startPos
+    } else if(e.type === "touchstart"){
+        touchDown = true
+        startPos = e.touches[0].clientX
+    } else if(e.type === "touchend"){
+        touchDown = false
+        var movedBy = currentTranslate - prevTranslate
+        if (movedBy < -100 && swiperPosition !== 0) {
+            swiperWrapper.setAttribute('data-slide', (swiperPosition - 1))
+            let currentTranslate = ((swiperPosition - 1) * 460)
+            swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
+        }
+        if (movedBy > 100 && swiperPosition < sliders.length - 1){
+            swiperWrapper.setAttribute('data-slide', (swiperPosition + 1))
+            let currentTranslate = ((swiperPosition + 1) * 460)
+            swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
+        }
+    }
 }

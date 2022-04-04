@@ -32,7 +32,7 @@
             width: min(1200px, 80%);
             p{
                 width: min(400px, 50%);
-                line-height: 1.4;
+                line-height: 2;
                 color: $white-3;
             }
             h1{
@@ -201,11 +201,39 @@
     }
 }
 .swiper{
+    overflow-y: hidden;
+    margin: 80px 0;
+    &:hover{
+        cursor: grab;
+    }
     .swiper-wrapper{
+        transition: transform 600ms ease;
+        @media screen and (max-width: 400px){
+            .review-box{
+                width: calc(90vw - 40px);
+                margin-left: 5vw;
+            }
+        }
+        @media screen and (min-width: 400px) {
+            .review-box{
+                width: 400px;
+                margin: 0 10px;
+            }
+        }
         .review-box{
+            display: flex;
+            flex-direction: column;
             background-color: $blue-1;
             padding: 10px 20px;
             border-radius: 8px;
+            height: 200px;
+            user-select: none;
+            .reviewer{
+                font-weight: 900;
+            }
+            .rating-wrapper{
+                margin-top: auto;
+            }
         }
     }   
 }
