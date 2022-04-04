@@ -3261,6 +3261,7 @@ h5, .h5 {
           user-select: none;
 }
 .swiper .swiper-wrapper .review-box .reviewer {
+  margin-top: 10px;
   font-weight: 900;
 }
 .swiper .swiper-wrapper .review-box .rating-wrapper {

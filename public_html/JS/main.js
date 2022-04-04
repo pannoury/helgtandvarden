@@ -132,10 +132,14 @@ function fetchGoogleReviews(){
             swiperWrapper.setAttribute('slides', responseData.length)
 
             for(let i=0; i < responseData.length; i++){
+                if(responseData[i].comment.length > 200){
+                    responseData[i].comment = `${responseData[i].comment.substring(0,200).split(/\.(?=[^\.]+$)/)[0]}. [...]`
+                }
+
                 swiperWrapper.innerHTML += 
                 `
                 <div class="review-box swiper-slide">
-                    <p class="reviewer">${responseData[i].name}</p>
+                    <a class="reviewer" href="https://www.google.se/maps/place/Helgtandv%C3%A5rden/@59.3360033,18.0318185,17z/data=!4m7!3m6!1s0x465f791eb5682a75:0x623f9e5fae192bdd!8m2!3d59.3359998!4d18.0340109!9m1!1b1?hl=sv">${responseData[i].name}</a>
                     <p class="review-comment">${responseData[i].comment}</p>
                     <div class="rating-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><path d="M0,0h24v24H0V0z" fill="none"/><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M12,17.27l4.15,2.51c0.76,0.46,1.69-0.22,1.49-1.08l-1.1-4.72l3.67-3.18c0.67-0.58,0.31-1.68-0.57-1.75l-4.83-0.41 l-1.89-4.46c-0.34-0.81-1.5-0.81-1.84,0L9.19,8.63L4.36,9.04c-0.88,0.07-1.24,1.17-0.57,1.75l3.67,3.18l-1.1,4.72 c-0.2,0.86,0.73,1.54,1.49,1.08L12,17.27z"/></g></svg>
