@@ -1,50 +1,63 @@
 <?php
-    if(isset($_GET)){
-        $mysqli = new mysqli(
+
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST'); 
+    header("Access-Control-Allow-Headers: X-Requested-With");
+
+    if(isset($_GET['request'])){
+        $mysqli = mysqli_connect(
             'mysql31.unoeuro.com',
             'helgtandvaarden_se',
             'ckbz6gxB3taG',
             'helgtandvaarden_se_db'
         );
-        if ($mysqli -> connect_errno) {
-            echo json_encode("Failed to connect to MySQL: " . $mysqli -> connect_error);
-            exit();
+        if(!$mysqli){
+            die("Connection failed: " . mysqli_connect_error());
         }
 
-        $stmt = $mysqli->prepare("SELECT * FROM google_reviews WHERE rating='5'");
-        mysqli_stmt_execute($stmt);
-        $result = $stmt->get_result();
 
-
-        if(mysqli_num_rows($result) >= 1){
-
-            $result_array = array();
-
-            for($i = 0; $i < mysqli_num_rows($result); $i++){
-                $row = mysqli_fetch_array($result);
-
-                echo json_encode(print_r($row));
-
-                $array = array(
-                    'review_id' => $row['review_id'],
-                    'source' => $row['source'],
-                    'date' => $row['date'],
-                    'rating' => $row['rating'],
-                    'comment' => $row['comment'],
-                    'name' => $row['name'],
-                    'title' => $row['title'],
-                    'scrape_date' => $row['scrape_date']
-                );
-
-                array_push($result_array, $array);
+        if($_GET['request'] === "google_reviews"){
+            $stmt = mysqli_stmt_init($mysqli);
+            $stmt = mysqli_prepare($mysqli, "SELECT * FROM google_reviews WHERE rating = 5 AND comment != ''");
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $rows = mysqli_num_rows($result);
+    
+            if($rows >= 1){
+    
+                $multiArray = array();
+    
+                for($i=0; $i < $rows; $i++){
+                    $row = mysqli_fetch_array($result);
+    
+                    $resultWrapper = array(
+                        'review_id' => utf8_encode($row['review_id']),
+                        'source' => utf8_encode($row['source']),
+                        'date' => utf8_encode($row['date']),
+                        'rating' => utf8_encode($row['rating']),
+                        'comment' => utf8_encode($row['comment']),
+                        'name' => utf8_encode($row['name']),
+                        'title' => utf8_encode($row['title']),
+                        'scrape_date' => utf8_encode($row['scrape_date'])
+                    );
+    
+                    array_push($multiArray, $resultWrapper);
+                }
+    
+                echo json_encode($multiArray);
+                http_response_code(200);
+                mysqli_close($mysqli);
+    
+            } else{
+                http_response_code(400);
+                echo json_encode("No data was found");
+                mysqli_close($mysqli);
             }
-
-            echo json_encode($result_array, JSON_FORCE_OBJECT);
-            http_response_code(200);
-
         } else{
             http_response_code(400);
-            echo json_encode("No data was found");
+            echo json_encode("No requests specified");
+            mysqli_close($mysqli);
         }
     }
 ?>
