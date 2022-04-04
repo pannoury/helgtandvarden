@@ -232,8 +232,15 @@
                 margin-top: 10px;
                 font-weight: 900;
             }
-            .rating-wrapper{
+            .rating-wrapper-wrapper{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
                 margin-top: auto;
+                p{
+                    margin: 0;
+                }
             }
         }
     }   

@@ -3264,6 +3264,13 @@ h5, .h5 {
   margin-top: 10px;
   font-weight: 900;
 }
-.swiper .swiper-wrapper .review-box .rating-wrapper {
+.swiper .swiper-wrapper .review-box .rating-wrapper-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: auto;
+}
+.swiper .swiper-wrapper .review-box .rating-wrapper-wrapper p {
+  margin: 0;
 }/*# sourceMappingURL=style.css.map */
