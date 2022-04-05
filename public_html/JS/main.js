@@ -82,7 +82,7 @@ function sectionScrollAnimations(){
     const faders = document.querySelectorAll('.fade-in');
     const appearOptions = {
         threshold: 0,
-        rootMargin: "0px 0px -250px 0px"
+        rootMargin: "0px 0px -150px 0px"
     };
     const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
         entries.forEach(entry => {
@@ -132,13 +132,13 @@ function fetchGoogleReviews(){
             swiperWrapper.setAttribute('slides', responseData.length)
 
             for(let i=0; i < responseData.length; i++){
-                if(responseData[i].comment.length > 200){
+                if(responseData[i].comment.length > 250){
                     responseData[i].comment = `${responseData[i].comment.substring(0,200).split(/\.(?=[^\.]+$)/)[0]}. [...]`
                 }
 
                 swiperWrapper.innerHTML += 
                 `
-                <div class="review-box swiper-slide">
+                <div class="review-box swiper-slide" data-slider="${i + 1}/${responseData.length}">
                     <a class="reviewer" href="https://www.google.se/maps/place/Helgtandv%C3%A5rden/@59.3360033,18.0318185,17z/data=!4m7!3m6!1s0x465f791eb5682a75:0x623f9e5fae192bdd!8m2!3d59.3359998!4d18.0340109!9m1!1b1?hl=sv">${responseData[i].name}</a>
                     <p class="review-comment">${responseData[i].comment}</p>
                     <div class="rating-wrapper-wrapper">
@@ -181,8 +181,8 @@ let startPosition
 //Mobile Swiper
 let touchDown = false
 let startPos = 0
-let currentTranslate = 0
 let prevTranslate = 0
+let currentPos = 0
 
 function swiper(e){
     var swiperWrapper = document.querySelector('.swiper-wrapper')
@@ -210,25 +210,31 @@ function swiper(e){
         }
     }
 
-    if(e.type === "touchmove"){
+    if(e.type === "touchmove" && touchDown){
+        currentPos = e.touches[0].clientX
+        /*
         var currentPosition = e.touches[0].clientX
         var deltaX = startPos - currentPosition
         swiperWrapper.style.transform = `translateX(-${Math.abs(prevTranslate) + deltaX}px)`
         currentTranslate = prevTranslate + currentPosition - startPos
+        */
     } else if(e.type === "touchstart"){
         touchDown = true
         startPos = e.touches[0].clientX
+        console.log(e.touches[0])
     } else if(e.type === "touchend"){
         touchDown = false
-        var movedBy = currentTranslate - prevTranslate
-        if (movedBy < -100 && swiperPosition !== 0) {
-            swiperWrapper.setAttribute('data-slide', (swiperPosition - 1))
-            let currentTranslate = ((swiperPosition - 1) * 460)
+        var movedBy = currentPos - startPos
+        console.log(movedBy)
+        prevTranslate = movedBy
+        if (movedBy < -100 && swiperPosition < sliders.length - 1) {
+            swiperWrapper.setAttribute('data-slide', (swiperPosition + 1))
+            let currentTranslate = ((swiperPosition + 1) * (window.innerWidth * 0.95))
             swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
         }
-        if (movedBy > 100 && swiperPosition < sliders.length - 1){
-            swiperWrapper.setAttribute('data-slide', (swiperPosition + 1))
-            let currentTranslate = ((swiperPosition + 1) * 460)
+        if (movedBy > 100 && swiperPosition !== 0){
+            swiperWrapper.setAttribute('data-slide', (swiperPosition - 1))
+            let currentTranslate = ((swiperPosition - 1) * (window.innerWidth * 0.95))
             swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
         }
     }
