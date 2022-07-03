@@ -12,14 +12,14 @@ window.onload = () => {
     appearEffect()
     fetchGoogleReviews()
 
-    setTimeout(() => {
-        document.getElementById('popupWindow').setAttribute('aria-label', 'display')
-        document.body.style.overflowY = "hidden";
-        document.getElementById('popupClose').addEventListener('click', (e) => {
-            e.target.parentElement.parentElement.parentElement.setAttribute('aria-label', 'hidden')
-            document.body.style.overflowY = "";
-        })
-    }, 3000)
+    //setTimeout(() => {
+    //    document.getElementById('popupWindow').setAttribute('aria-label', 'display')
+    //    document.body.style.overflowY = "hidden";
+    //    document.getElementById('popupClose').addEventListener('click', (e) => {
+    //        e.target.parentElement.parentElement.parentElement.setAttribute('aria-label', 'hidden')
+    //        document.body.style.overflowY = "";
+    //    })
+    //}, 3000)
 }
 
 const navbarComponents = {
