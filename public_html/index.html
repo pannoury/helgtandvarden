@@ -8,9 +8,11 @@
     <link href="https://archive.codenoury.se/General Assets/Sass/style.css" rel="stylesheet">
     <title>Helgtandvården</title>
     <meta property="og:title" content="Helgtandvården">
-    <meta property="og:description" content="x">
-    <meta property="og:site" content="x">
-    <meta property="og:site_name" content="x">
+    <meta property="og:description" content="Kliniken för helgtandvård">
+    <meta property="og:site" content="https://helgtandvården.se">
+    <meta property="og:site_name" content="Helgtandvården.se">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
     <link rel="icon" type="image/png" sizes="32x32" href="./Assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./Assets/favicon-16x16.png">
 </head>
@@ -26,7 +28,7 @@
             </a>
             <div class="nav-desktop">
                 <ul>
-                    <li><a href="mailto: ndiman@outlook.com" class="button button-blue button-pill">Kontakta oss</a></li>
+                    <li><a href="mailto: info@helgtandvarden.se" class="button button-blue button-pill">Kontakta oss</a></li>
                 </ul>
             </div>
         </nav>
@@ -48,24 +50,30 @@
         </div>
         <div class="content-w-80">
             <div class="col">
-                <h2 class="load">Din nya helgklinik</h2>
+                <h2 class="load">Din nya tandläkare</h2>
                 <p class="large w-80-perc color-white-1 load">
-                    Välkommen till den nya tandvårdskliniken helgtandvården, 
-                    här arbetar välmeriterade tandläkare specialiserade inom estetik, Invisalign (osynlig tandreglering/ställning) och implantat, 
-                    alla dagar i veckan, 
-                    för samma priser som folktandvården där vi även erbjuder prisgaranti och räntefri delbetalning.
+                    Välkommen till din nya tandvårdsklinik Helgtandvården <br>
+                    Här arbetar välmeriterade tandläkare <br>
+                    Alla dagar i veckan <br>
+                    Med Hollywoodsmile, Implantat, och allmäntandvård <br>
+                    För samma priser som folktandvården <br>
+                    5års räntefri delbetalning för din behandling <br>
                 </p>
             </div>
         </div>
+        <div class="swiper">
+            <div class="swiper-wrapper" data-slide="0"></div>
+        </div>
         <div class="content-w-80">
             <h2 class="fade-in">Hitta till oss</h2>
-            <iframe class="google-embed fade-in" style="border:0" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJq65JNVF4X0YRLjvFdlVgwhE&key=AIzaSyCeLyjX_oPfyXFdbrM58RSZz-lX-zclCNE"></iframe>
+            <iframe class="google-embed fade-in"width="600" height="450" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJHRGAF3ydX0YR8R16WYaTSbA&key=AIzaSyCeLyjX_oPfyXFdbrM58RSZz-lX-zclCNE"></iframe> 
+            
         </div>
     </main>
 
     <footer>
         <div class="footer-row">
-            <a class="nav-logo" href="https://archive.codenoury.se/sqcars">
+            <a class="nav-logo">
                 <img src="./Assets/helgtandvard-logo.svg">
                 <h4 class="clr-white">Helgtandvården</h4>
             </a>
@@ -75,9 +83,9 @@
             <div class="footer-col">
                 <ul>
                     <li><h5>Helgtandvården</h5></li>
-                    <li><a href="mailto: ndiman@outlook.com">ndiman@outlook.com</a></li>
-                    <li>Org.nr: 559355-7332</li>
-                    <li><a href="https://www.google.com/maps/place/Lill%C3%A5v%C3%A4gen+43,+128+45+Bagarmossen,+Sverige/data=!4m2!3m1!1s0x465f78513549aeab:0x11c2605576c53b2e?sa=X&ved=2ahUKEwicx_Lax9z0AhXipIsKHTGrC0MQ8gF6BAgPEAE">Lillåvägen 43, 128 45 Bagarmossen, Sverige</a></li>
+                    <li><a href="tel: +46760758758">+46760 758 758</a></li>
+                    <li><a href="mailto: info@helgtandvarden.se">info@helgtandvarden.se</a></li>
+                    <li><a href="https://www.google.com/maps/place/Sankt+Eriksgatan+54,+112+34+Stockholm/data=!4m2!3m1!1s0x465f9d7c1780111d:0xb0499386597a1df1?sa=X&ved=2ahUKEwjGmerjkPn2AhUDv4sKHUgjDt8Q8gF6BAgXEAE">Sankt Eriksgatan 54, 112 34 Stockholm, Sverige</a></li>
                     <li>Öppettider: Mån-Sön: 07:00 - 21:00</li>
                 </ul>
             </div>
@@ -96,5 +104,19 @@
         <div class="footer-row">
         </div>
     </footer>
-    <script type="module" src="./JS/main.js"></script>
+
+    <div id="popupWindow" aria-label="hidden">
+        <div class="window-wrapper">
+            <a><span id="popupClose">&#10006;</span></a>
+            <p>
+                Ta del av vår tillfälliga kampanj
+                Undersökning + hollywoodsmile konsultation + tandhygienistrengöring.
+                Ordinariepris 2600 SEK, nu endast 399 SEK <br>
+                (Ditt allmänna tandvårdsbidrag förbrukas om du eventuellt skulle ha några)
+                Boka tid nu
+            </p>
+            <a class="button button-blue button-pill" href="https://www.muntra.com/helgtandvarden/c/2604/?referral_source=helgtandv%C3%A5rden.se/">Boka nu</a>
+        </div>
+    </div>
+    <script src="./JS/main.js" defer type="module"></script>
 </body>
