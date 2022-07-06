@@ -7,7 +7,7 @@ export default function Footer(){
         <footer>
             <div className="footer-row">
                 <a className="nav-logo">
-                    <Image src="./Assets/helgtandvard-logo.svg" alt="helgtandvarden_logo"/>
+                    <img src="./Assets/helgtandvard-logo.svg" alt="helgtandvarden_logo"/>
                     <h4 className="clr-white">Helgtandvården</h4>
                 </a>
             </div>
