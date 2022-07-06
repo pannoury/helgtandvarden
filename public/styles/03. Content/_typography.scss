@@ -1,0 +1,68 @@
+a, a:visited, a:link{
+    text-decoration: none;
+    color: inherit;
+}
+h1, .h1{
+    font-size: 40px;
+    margin: 0;
+}
+h2, .h2{
+    font-size: 36px;
+    margin: 0;
+}
+h3, .h3{
+    font-size: 32px;
+    margin: 0;
+}
+h4, .h4{
+    font-size: 28px;
+    margin: 0;
+}
+h5, .h5{
+    font-size: 22px;
+    margin: 0;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+.f-w{
+    &-900{
+        font-weight: 900;
+    }
+    &-700{
+        font-weight: 700;
+    }
+    &-400{
+        font-weight: 400;
+    }
+    &-300{
+        font-weight: 300;
+    }
+    &-100{
+        font-weight: 100;
+    }
+}
+
+.clr{
+    &-white{
+        color: $white;
+    }
+    &-blue-0{
+        color: $blue-0;
+    }
+    &-blue-1{
+        color: $blue-1;
+    }
+    &-blue-2{
+        color: $blue-2;
+    }
+    &-blue-3{
+        color: $blue-3;
+    }
+    &-blue-4{
+        color: $blue-4;
+    }
+    &-blue-20{
+        color: $blue-20;
+    }
+}
