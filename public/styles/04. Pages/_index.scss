@@ -310,4 +310,15 @@
             font-family: 'Roboto', sans-serif;
         }
     }
+    button{
+        width: 200px;
+        border-radius: 6px;
+        border: 1px solid transparent;
+        background-color: $blue-1;
+        color: $white;
+        &:hover{
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
 }

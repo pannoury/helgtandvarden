@@ -6,6 +6,8 @@ import $ from 'jquery'
 export default function Home() {
   const [reviews, setReviews] = useState(undefined)
   const [position, setPosition] = useState(1);
+  const [isSent, setIsSent] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     var loadElements = document.querySelectorAll('.load')
@@ -132,6 +134,52 @@ export default function Home() {
     }
   }
 
+  function alphabeticInput(e){
+    var value = e.target.value;
+    e.target.value = value.charAt(0).toUpperCase() + value.slice(1); //first letter uppercase
+    e.target.value = e.target.value.trim() //removes spaces
+    e.target.value = e.target.value.replace(/[^A-Za-z]/g, ""); //replace numeric values
+  }
+
+  function submitForm(e){
+    e.preventDefault()
+    var firstname = e.target[0].value
+    var lastname = e.target[1].value
+    var email = e.target[2].value
+
+    if(firstname.length > 0 && lastname.length > 0 && email.length > 5 && email.includes('@')){
+      setIsLoading(true)
+      var valueArray = []
+      for(let i = 0; i < 4; i++){
+        valueArray.push(e.target[i].value)
+      }
+
+      $.ajax({
+        url: "https://helgtandvården.se/php/contact.php",
+        dataType: 'text',
+        method: "POST",
+        data: {
+          formArray: valueArray
+        }
+      })
+      .done((data, textStatus, jqXHR) => {
+        if(jqXHR.status === 200){
+          console.log(data)
+        } else{
+        
+        }
+        setIsLoading(false)
+      })
+      .fail((error) => {
+        console.log(error)
+        setIsLoading(false)
+      })
+
+    } else {
+      alert("Var god och fyll i alla rutor innan du skickar din förfrågan")
+    }
+  }
+
   return (
     <Layout>
       <main className='index'>
@@ -232,14 +280,14 @@ export default function Home() {
           </div>
           <div className='content-w-80'>
             <h2>Kontakta oss</h2>
-            <form className='contact-form'>
+            <form className='contact-form' onSubmit={submitForm}>
               <div className='input-wrapper'>
                 <label>Förnamn</label>
-                <input placeholder=''></input>
+                <input onInput={alphabeticInput}></input>
               </div>
               <div className='input-wrapper'>
                 <label>Efternamn</label>
-                <input placeholder=''></input>
+                <input onInput={alphabeticInput}></input>
               </div>
               <div className='input-wrapper'>
                 <label>E-postadress</label>
@@ -249,6 +297,14 @@ export default function Home() {
                 <label>Beskrivning</label>
                 <textarea></textarea>
               </div>
+              <button>
+                {
+                  isLoading ?
+                  <div className='lds-dual-ring'></div>
+                  :
+                  "Skicka"
+                }
+              </button>
             </form>
           </div>
           <div className="content-w-80">
