@@ -140,17 +140,23 @@ export default function Home() {
     e.target.value = e.target.value.trim() //removes spaces
     e.target.value = e.target.value.replace(/[^A-Za-z]/g, ""); //replace numeric values
   }
+  function numericInput(e){
+    var value = e.target.value
+    e.target.value = e.target.value.trim() //removes spaces
+    e.target.value = e.target.value.replace(/\D+/g, "");
+  }
 
   function submitForm(e){
     e.preventDefault()
     var firstname = e.target[0].value
     var lastname = e.target[1].value
     var email = e.target[2].value
+    var phone = e.target[3].value
 
-    if(firstname.length > 0 && lastname.length > 0 && email.length > 5 && email.includes('@')){
+    if(firstname.length > 0 && lastname.length > 0 && email.length > 5 && email.includes('@') && phone.length > 5){
       setIsLoading(true)
       var valueArray = []
-      for(let i = 0; i < 4; i++){
+      for(let i = 0; i < 5; i++){
         valueArray.push(e.target[i].value)
       }
 
@@ -292,6 +298,10 @@ export default function Home() {
               <div className='input-wrapper'>
                 <label>E-postadress</label>
                 <input placeholder='' type={"email"}></input>
+              </div>
+              <div className='input-wrapper'>
+                <label>Telefonnummer</label>
+                <input placeholder='' onInput={numericInput}></input>
               </div>
               <div className='input-wrapper'>
                 <label>Beskrivning</label>
