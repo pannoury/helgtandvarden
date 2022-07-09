@@ -156,17 +156,18 @@ export default function Home() {
               </video>
           </div>
           <div className="content-w-80">
-              <div className="col">
-                  <h2 className="load">Din nya tandläkare</h2>
-                  <p className="large w-80-perc color-white-1 load">
-                      Välkommen till din nya tandvårdsklinik Helgtandvården <br/>
-                      Här arbetar välmeriterade tandläkare <br/>
-                      Alla dagar i veckan <br/>
-                      Med Hollywoodsmile, Implantat, och allmäntandvård <br/>
-                      För samma priser som folktandvården <br/>
-                      5års räntefri delbetalning för din behandling <br/>
-                  </p>
+            <h2 className="load">Din nya tandläkare</h2>
+            <div className='pitch-wrapper'>
+              <div className='pitch-box'>
+                <span>Rätt Vård</span>
               </div>
+              <div className='pitch-box'>
+                <span>I rätt tid</span>
+              </div>
+              <div className='pitch-box'>
+                <span>Till rätt pris</span>
+              </div>
+            </div>
           </div>
           <div 
             className="swiper"
@@ -215,6 +216,40 @@ export default function Home() {
                   })
                 }
               </div>
+          </div>
+          <div className='content-w-80'>
+            <h2>Galleri</h2>
+            <div className='before-after-wrapper'>
+              <div className='before-after'>
+                <img src='../assets/kund_1_after.jpg' alt='after_picture'/>
+                <img src='../assets/kund_1_before.jpg' alt='before_picture'/>
+              </div>
+              <div className='before-after'>
+              <img src='../assets/kund_2_after.jpg' alt='before_picture'/>
+                <img src='../assets/kund_2_before.jpeg' alt='before_picture'/>
+              </div>
+            </div>
+          </div>
+          <div className='content-w-80'>
+            <h2>Kontakta oss</h2>
+            <form className='contact-form'>
+              <div className='input-wrapper'>
+                <label>Förnamn</label>
+                <input placeholder=''></input>
+              </div>
+              <div className='input-wrapper'>
+                <label>Efternamn</label>
+                <input placeholder=''></input>
+              </div>
+              <div className='input-wrapper'>
+                <label>E-postadress</label>
+                <input placeholder='' type={"email"}></input>
+              </div>
+              <div className='input-wrapper'>
+                <label>Beskrivning</label>
+                <textarea></textarea>
+              </div>
+            </form>
           </div>
           <div className="content-w-80">
             <h2 className="fade-in">Hitta till oss</h2>
