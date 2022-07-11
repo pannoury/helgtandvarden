@@ -9,6 +9,9 @@
         flex-direction: column-reverse;
         .col{
             display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             width: 90%;
             margin: auto;
         }
@@ -69,10 +72,8 @@
             margin-bottom: 40px;
         }
         a{
+            margin-top: 10px;
             font-size: 22px;
-            &:nth-child(1){
-                margin-right: 20px;
-            }
         }
     }
 }
@@ -131,6 +132,12 @@
 
 .swiper{
     padding: 40px 0;
+    h2{
+        font-size: 54px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }
 
 #popupWindow{
@@ -248,10 +255,23 @@
 .before-after-wrapper{
     margin: 20px 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    @media screen and (max-width: 850px){
+        justify-content: center;
+        flex-direction: column;
+        .before-after{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    @media screen and (min-width: 850px){
+        flex-direction: row;
+        justify-content: space-between;
+        .before-after{
+            width: 45%;
+        }
+    }
+
     .before-after{
-        width: 45%;
         height: 250px;
         overflow: hidden;
         border-radius: 6px;
@@ -280,6 +300,82 @@
     }
 }
 
+.pitch-wrapper{
+    display: flex;
+    overflow: hidden;
+    @media screen and (max-width: 1300px){
+        flex-direction: column;
+        .pitch-box{
+            width: min(600px, 80%);
+            margin: 0 auto 10px auto;
+        }
+    }
+    @media screen and (min-width: 1300px){
+        flex-direction: row;
+        .pitch-box{
+            width: calc((100% / 3) - 20px);
+            margin: 0 10px;
+        }
+    }
+    margin-top: 20px;
+    .pitch-box{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px 20px;
+        border-radius: 8px;
+        height: 200px;
+        overflow: hidden;
+        color: $white;
+        z-index: 10;
+        border: 1px solid $white-2;
+        img{
+            filter: brightness(0.6);
+        }
+        span{
+            position: absolute;
+            z-index: 20;
+            &:nth-child(1){
+                bottom: 50%;
+                font-weight: 600;
+                font-size: 26px;
+            }
+            &:nth-child(2){
+                bottom: -50%;
+            }
+        }
+        &:hover{
+            span{
+                &:nth-child(1){
+                    animation: smooth_appear1 600ms ease forwards;
+                }
+                &:nth-child(2){
+                    animation: smooth_appear 600ms ease forwards;
+                }
+            }
+        }
+    }
+}
+
+@keyframes smooth_appear {
+    from{
+        bottom: -20%;
+    } to {
+        bottom: 20%;
+    }
+}
+@keyframes smooth_appear1 {
+    from{
+        bottom: 50%;
+    } to {
+        bottom: 70%;
+    }
+}
+
+
+
 .contact-form{
     display: flex;
     flex-direction: column;
@@ -287,7 +383,7 @@
     .input-wrapper{
         display: flex;
         flex-direction: column;
-        width: 48%;
+        width: min(100%, 500px);
         margin-bottom: 20px;
         label{
             font-size: 20px;

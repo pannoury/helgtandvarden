@@ -1,16 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Header(){
+    const [visible, setVisible] = useState(false)
+    const [width, setWidth] = useState(undefined)
 
     useEffect(() => {
         window.addEventListener('scroll', windowScroll)
+        window.addEventListener('resize', resizeWindow)
 
         return(() => {
             window.removeEventListener('scroll', windowScroll)
+            window.removeEventListener('resize', resizeWindow)
         })
     }, [])
+
+    function resizeWindow(e){
+        setWidth(window.innerWidth)
+    }
 
     function windowScroll(e){
         var navbar = document.getElementsByTagName('nav')[0];
@@ -31,16 +38,21 @@ export default function Header(){
     return(
         <header>
             <nav>
-                <Link href="https://archive.codenoury.se/sqcars">
+                <Link href="https://helgtandvården.se">
                     <a className="nav-logo">
                     <img src="./assets/helgtandvard-logo.svg" alt="helgtandvarden_logo"/>
                     <h4 className="clr-white">Helgtandvården</h4>
                     </a>
                 </Link>
-                <a id="nav-button" aria-label="hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"/></svg>
+                <a id="nav-button" aria-label="hidden" onClick={(() => { setVisible(!visible) })}>
+                    {
+                        !visible ?
+                        <i className="material-icons">menu</i>
+                        :
+                        <i className="material-icons">close</i>
+                    }
                 </a>
-                <div className="nav-desktop">
+                <div className="nav-desktop" style={width && visible && width < 650 ? {width: "100vw"} : null}>
                     <ul>
                         <li>
                             <Link href="mailto: info@helgtandvarden.se">
