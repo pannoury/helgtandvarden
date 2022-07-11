@@ -205,6 +205,17 @@ export default function Home() {
     }
   }
 
+  function mouseOver(e){
+    var target = e.currentTarget
+    if(e.type === "mouseenter"){
+      target.querySelectorAll('img')[0].style.cssText = "display: none;"
+      target.querySelectorAll('img')[1].style.cssText = "display: block;"
+    } else {
+      target.querySelectorAll('img')[1].style.cssText = "display: none;"
+      target.querySelectorAll('img')[0].style.cssText = "display: block;"
+    }
+  }
+
   return (
     <Layout>
       <main className='index'>
@@ -227,20 +238,23 @@ export default function Home() {
           <div className="content-w-80">
             <h2 className="load">Din nya tandläkare</h2>
             <div className='pitch-wrapper load'>
-              <div className='pitch-box'>
-                <span>Rätt Vård</span>
+              <div className='pitch-box' onMouseEnter={mouseOver} onMouseLeave={mouseOver}>
+                <span>Rätt Vård...</span>
                 <span>För att du som patient ska kunna få bästa möjliga behandling är det viktigt för oss på Helgtandvården att satsa på personal med hög kompetens och därför lägger vi stor vikt på vidareutbildning och certifieringar</span>
                 <img src="https://helgtandvården.se/assets/blue_background.jpg" />
+                <img src="https://helgtandvården.se/assets/tech-1.png" />
               </div>
-              <div className='pitch-box'>
-                <span>I rätt tid</span>
-                <span>God service och högtillgänglighet med generösa öppettider som för patienten mha digitala lösningar blir lättåtkomligt. Att vara framåt inom digitalisering minskar också behandlingstiderna i stolen</span>
+              <div className='pitch-box' onMouseEnter={mouseOver} onMouseLeave={mouseOver}>
+                <span>I rätt tid...</span>
+                <span>God service och högtillgänglighet med generösa öppettider som för patienten mha digitala lösningar blir lättåtkomliga. Att vara framåt inom digitalisering minskar också behandlingstiderna i stolen</span>
                 <img src="https://helgtandvården.se/assets/blue_background.jpg" />
+                <img src="https://helgtandvården.se/assets/tech-2.jpg" />
               </div>
-              <div className='pitch-box'>
-                <span>Till rätt pris</span>
-                <span>Vi har som mål att alltid kunna erbjuda fördelaktiga priser men också möjligheten att betala hela kostnaden räntefritt över många år</span>
+              <div className='pitch-box' onMouseEnter={mouseOver} onMouseLeave={mouseOver}>
+                <span>Till rätt pris...</span>
+                <span>Vi har som mål att alltid kunna erbjuda fördelaktiga priser men också möjligheten att betala hela kostnaden till ett fast månadspris</span>
                 <img src="https://helgtandvården.se/assets/blue_background.jpg" />
+                <img src="https://helgtandvården.se/assets/tech-3.jpg" />
               </div>
             </div>
           </div>
@@ -306,7 +320,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='content-w-80'>
+          <div className='content-w-80' id='contact-form'>
             <h2>Kontakta oss</h2>
             <form className='contact-form' onSubmit={submitForm}>
               <div className='input-wrapper'>

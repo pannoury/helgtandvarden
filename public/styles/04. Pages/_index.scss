@@ -324,19 +324,36 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding: 10px 20px;
+        padding: 0px 20px;
         border-radius: 8px;
         height: 200px;
         overflow: hidden;
-        color: $white;
-        z-index: 10;
+        color: #fff;
+        text-shadow: 0 0 10px #03bcf4,
+        0 0 20px #03bcf4,
+        0 0 40px #03bcf4,
+        0 0 80px #03bcf4,
+        0 0 160px #03bcf4,
+        0 0 400px #03bcf4;
+        z-index: 2;
         border: 1px solid $white-2;
+        &:nth-child(2){
+            img{
+                transform: rotate(180deg);
+            }
+        }
         img{
-            filter: brightness(0.6);
+            //filter: brightness(0.8);
+            width: 120%;
+            height: 200%;
+            &:nth-last-child(1){
+                display: none;
+            }
         }
         span{
             position: absolute;
-            z-index: 20;
+            z-index: 5;
+            text-align: center;
             &:nth-child(1){
                 bottom: 50%;
                 font-weight: 600;

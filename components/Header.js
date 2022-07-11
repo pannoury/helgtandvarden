@@ -35,6 +35,13 @@ export default function Header(){
         }
     }
 
+    function scrollToForm(){
+        setVisible(false)
+        var element = document.getElementById("contact-form")
+
+        element.scrollIntoView({behavior: "smooth", block: "end"})
+    }
+
     return(
         <header>
             <nav>
@@ -54,10 +61,8 @@ export default function Header(){
                 </a>
                 <div className="nav-desktop" style={width && visible && width < 650 ? {width: "100vw"} : null}>
                     <ul>
-                        <li>
-                            <Link href="mailto: info@helgtandvarden.se">
-                                <a className="button button-blue button-pill">Kontakta oss</a>
-                            </Link>
+                        <li onClick={scrollToForm}>
+                            <a className="button button-blue button-pill">Kontakta oss</a>
                         </li>
                     </ul>
                 </div>

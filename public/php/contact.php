@@ -190,7 +190,7 @@
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
         $headers[] = 'From: info@helgtandvarden.se';
-        $to = "{$formArray[2]}, 'info@helgtandvarden.se'";
+        $to = "{$formArray[2]}, info@helgtandvarden.se";
 
         if(mail($to, "Kontaktförfrågan", $mailBody, implode("\r\n", $headers))){
             echo ('Message has been sent');

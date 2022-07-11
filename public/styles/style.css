@@ -3409,20 +3409,29 @@ h5, .h5 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 10px 20px;
+  padding: 0px 20px;
   border-radius: 8px;
   height: 200px;
   overflow: hidden;
   color: #fff;
-  z-index: 10;
+  text-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4, 0 0 80px #03bcf4, 0 0 160px #03bcf4, 0 0 400px #03bcf4;
+  z-index: 2;
   border: 1px solid rgba(255, 255, 255, 0.438);
 }
+.pitch-wrapper .pitch-box:nth-child(2) img {
+  transform: rotate(180deg);
+}
 .pitch-wrapper .pitch-box img {
-  filter: brightness(0.6);
+  width: 120%;
+  height: 200%;
+}
+.pitch-wrapper .pitch-box img:nth-last-child(1) {
+  display: none;
 }
 .pitch-wrapper .pitch-box span {
   position: absolute;
-  z-index: 20;
+  z-index: 5;
+  text-align: center;
 }
 .pitch-wrapper .pitch-box span:nth-child(1) {
   bottom: 50%;
