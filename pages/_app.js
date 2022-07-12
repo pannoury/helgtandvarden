@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
 import '../public/styles/style.css'
-import * as gtag from './modules/gtag'
+import * as gtag from '../modules/gtag'
 
 
 function MyApp({ Component, pageProps }) {

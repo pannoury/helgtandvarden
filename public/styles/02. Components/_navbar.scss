@@ -90,10 +90,9 @@ header{
             @media screen and (min-width: 650px) {
                 display: none;
             }
-            svg{
-                fill: $white;
-                width: 40px;
-                height: 40px;
+            i{
+                color: $white;
+                font-size: 30px;
                 &:hover{
                     cursor: pointer;
                     //fill: $orange;

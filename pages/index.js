@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Layout from './components/Layout'
+import Layout from '../components/Layout'
 import Link from 'next/link'
 import $ from 'jquery'
 
@@ -8,6 +8,7 @@ export default function Home() {
   const [position, setPosition] = useState(1);
   const [isSent, setIsSent] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [width, setWidth] = useState(undefined)
 
   useEffect(() => {
     var loadElements = document.querySelectorAll('.load')
@@ -17,7 +18,7 @@ export default function Home() {
 
     fetchGoogleReviews()
     appearOnScrollInit()
-
+    setWidth(window.innerWidth)
   }, [])
 
   function appearOnScrollInit(){
@@ -103,26 +104,28 @@ export default function Home() {
     }
 
     if(e.type === "touchmove" && touchDown){
-        currentPos = e.touches[0].clientX
+      currentPos = e.touches[0].clientX
     } else if(e.type === "touchstart"){
-        touchDown = true
-        startPos = e.touches[0].clientX
-        console.log(e.touches[0])
+      touchDown = true
+      startPos = e.touches[0].clientX
+      console.log(e.touches[0])
     } else if(e.type === "touchend"){
-        touchDown = false
-        var movedBy = currentPos - startPos
-        console.log(movedBy)
-        prevTranslate = movedBy
-        if (movedBy < -100 && swiperPosition < sliders.length - 1) {
-            swiperWrapper.setAttribute('data-slide', (swiperPosition + 1))
-            let currentTranslate = ((swiperPosition + 1) * (window.innerWidth * 0.95))
-            swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
-        }
-        if (movedBy > 100 && swiperPosition !== 0){
-            swiperWrapper.setAttribute('data-slide', (swiperPosition - 1))
-            let currentTranslate = ((swiperPosition - 1) * (window.innerWidth * 0.95))
-            swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
-        }
+      touchDown = false
+      var movedBy = currentPos - startPos
+      console.log(movedBy)
+      prevTranslate = movedBy
+
+      if (movedBy < -100 && swiperPosition < sliders.length - 1) {
+        swiperWrapper.setAttribute('data-slide', (swiperPosition + 1))
+        let currentTranslate = ((swiperPosition + 1) * (window.innerWidth * 0.95))
+        swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
+      }
+
+      if (movedBy > 100 && swiperPosition !== 0){
+        swiperWrapper.setAttribute('data-slide', (swiperPosition - 1))
+        let currentTranslate = ((swiperPosition - 1) * (window.innerWidth * 0.95))
+        swiperWrapper.style.transform = `translateX(-${currentTranslate}px)`
+      }
     }
   }
 
@@ -171,6 +174,7 @@ export default function Home() {
       .done((data, textStatus, jqXHR) => {
         if(jqXHR.status === 200){
           console.log(data)
+          alert("Din förfrågan har mottagits! Tack för att du kontaktar oss på Helgtandvården")
         } else{
         
         }
@@ -186,22 +190,44 @@ export default function Home() {
     }
   }
 
+  function beforeAfterClick(e){
+    var target = e.currentTarget
+    var attribute = target.getAttribute('data-position')
+
+    if(attribute === "1"){
+      target.setAttribute('data-position', '2')
+      target.querySelectorAll('img')[0].style.cssText = `display: none;`
+      target.querySelectorAll('img')[1].style.cssText = `display: block;`
+    } else {
+      target.setAttribute('data-position', '1')
+      target.querySelectorAll('img')[1].style.cssText = `display: none;`
+      target.querySelectorAll('img')[0].style.cssText = `display: block;`
+    }
+  }
+
+  function mouseOver(e){
+    var target = e.currentTarget
+    if(e.type === "mouseenter"){
+      target.querySelectorAll('img')[0].style.cssText = "display: none;"
+      target.querySelectorAll('img')[1].style.cssText = "display: block;"
+    } else {
+      target.querySelectorAll('img')[1].style.cssText = "display: none;"
+      target.querySelectorAll('img')[0].style.cssText = "display: block;"
+    }
+  }
+
   return (
     <Layout>
       <main className='index'>
         <div className="index-hero grid grid-row-2-col">
               <div className="col">
                   <h1 className="clr-white load">Kliniken för helgtandvård</h1>
-                  <p className="load"></p>
                   <div className="button-wrapper load">
                     <Link 
                       href="https://www.muntra.com/helgtandvarden/c/2604/?referral_source=helgtandv%C3%A5rden.se/" 
                       target="_blank"
                     >
                       <a className="button button-blue button-pill">Boka tid</a>
-                    </Link>
-                    <Link href="mailto: ndiman@outlook.com">
-                      <a className="button button-hollow-blue button-pill">Kontakta oss</a>
                     </Link>
                   </div>
               </div>
@@ -211,15 +237,24 @@ export default function Home() {
           </div>
           <div className="content-w-80">
             <h2 className="load">Din nya tandläkare</h2>
-            <div className='pitch-wrapper'>
-              <div className='pitch-box'>
-                <span>Rätt Vård</span>
+            <div className='pitch-wrapper load'>
+              <div className='pitch-box' onMouseEnter={mouseOver} onMouseLeave={mouseOver}>
+                <span>Rätt Vård...</span>
+                <span>För att du som patient ska kunna få bästa möjliga behandling är det viktigt för oss på Helgtandvården att satsa på personal med hög kompetens och därför lägger vi stor vikt på vidareutbildning och certifieringar</span>
+                <img src="https://helgtandvården.se/assets/blue_background.jpg" />
+                <img src="https://helgtandvården.se/assets/tech-1.png" />
               </div>
-              <div className='pitch-box'>
-                <span>I rätt tid</span>
+              <div className='pitch-box' onMouseEnter={mouseOver} onMouseLeave={mouseOver}>
+                <span>I rätt tid...</span>
+                <span>God service och högtillgänglighet med generösa öppettider som för patienten mha digitala lösningar blir lättåtkomliga. Att vara framåt inom digitalisering minskar också behandlingstiderna i stolen</span>
+                <img src="https://helgtandvården.se/assets/blue_background.jpg" />
+                <img src="https://helgtandvården.se/assets/tech-2.jpg" />
               </div>
-              <div className='pitch-box'>
-                <span>Till rätt pris</span>
+              <div className='pitch-box' onMouseEnter={mouseOver} onMouseLeave={mouseOver}>
+                <span>Till rätt pris...</span>
+                <span>Vi har som mål att alltid kunna erbjuda fördelaktiga priser men också möjligheten att betala hela kostnaden till ett fast månadspris</span>
+                <img src="https://helgtandvården.se/assets/blue_background.jpg" />
+                <img src="https://helgtandvården.se/assets/tech-3.jpg" />
               </div>
             </div>
           </div>
@@ -230,6 +265,7 @@ export default function Home() {
             onMouseUp={swiper}
             onMouseMove={swiper}
           >
+            <h2 className='load'>Recensioner</h2>
               <div 
                 className="swiper-wrapper" 
                 data-slide="0"
@@ -271,20 +307,20 @@ export default function Home() {
                 }
               </div>
           </div>
-          <div className='content-w-80'>
+          <div className='content-w-80 load'>
             <h2>Galleri</h2>
             <div className='before-after-wrapper'>
-              <div className='before-after'>
+              <div className='before-after' data-position="1" onClick={width && width < 500 ? beforeAfterClick : null}>
                 <img src='../assets/kund_1_after.jpg' alt='after_picture'/>
                 <img src='../assets/kund_1_before.jpg' alt='before_picture'/>
               </div>
-              <div className='before-after'>
-              <img src='../assets/kund_2_after.jpg' alt='before_picture'/>
+              <div className='before-after' data-position="1" onClick={width && width < 500 ? beforeAfterClick : null}>
+                <img src='../assets/kund_2_after.jpg' alt='before_picture'/>
                 <img src='../assets/kund_2_before.jpeg' alt='before_picture'/>
               </div>
             </div>
           </div>
-          <div className='content-w-80'>
+          <div className='content-w-80' id='contact-form'>
             <h2>Kontakta oss</h2>
             <form className='contact-form' onSubmit={submitForm}>
               <div className='input-wrapper'>

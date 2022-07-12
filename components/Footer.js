@@ -1,13 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Footer(){
     return(
         <footer>
             <div className="footer-row">
                 <a className="nav-logo">
-                    <img src="./Assets/helgtandvard-logo.svg" alt="helgtandvarden_logo"/>
+                    <img src="https://helgtandvården.se/assets/helgtandvard-logo.svg" alt="helgtandvarden_logo"/>
                     <h4 className="clr-white">Helgtandvården</h4>
                 </a>
             </div>
