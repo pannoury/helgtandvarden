@@ -205,6 +205,17 @@ export default function Home() {
     }
   }
 
+  function hoverEffect(e){
+    var image = e.currentTarget.querySelectorAll('img')
+    if(e.type === "mouseenter"){
+      image[0].style.cssText = "display: none;"
+      image[1].style.cssText = "display: block;"
+    } else {
+      image[0].style.cssText = "display: block;"
+      image[1].style.cssText = "display: none;"
+    }
+  }
+
   return (
     <Layout>
       <main className='index'>
@@ -227,19 +238,19 @@ export default function Home() {
           <div className="content-w-80">
             <h2 className="load">Din nya tandläkare</h2>
             <div className='pitch-wrapper load'>
-              <div className='pitch-box'>
+              <div className='pitch-box' onMouseEnter={hoverEffect} onMouseLeave={hoverEffect}>
                 <span>Rätt Vård...</span>
                 <span>För att du som patient ska kunna få bästa möjliga behandling är det viktigt för oss på Helgtandvården att satsa på personal med hög kompetens och därför lägger vi stor vikt på vidareutbildning och certifieringar</span>
                 <img src="../assets/blue_background.jpg" />
                 <img src="../assets/tech-1.png" />
               </div>
-              <div className='pitch-box'>
+              <div className='pitch-box' onMouseEnter={hoverEffect} onMouseLeave={hoverEffect}>
                 <span>I rätt tid...</span>
                 <span>God service och högtillgänglighet med generösa öppettider som för patienten mha digitala lösningar blir lättåtkomliga. Att vara framåt inom digitalisering minskar också behandlingstiderna i stolen</span>
                 <img src="../assets/blue_background.jpg" />
                 <img src="../assets/tech-2.jpg" />
               </div>
-              <div className='pitch-box'>
+              <div className='pitch-box' onMouseEnter={hoverEffect} onMouseLeave={hoverEffect}>
                 <span>Till rätt pris...</span>
                 <span>Vi har som mål att alltid kunna erbjuda fördelaktiga priser men också möjligheten att betala hela kostnaden till ett fast månadspris</span>
                 <img src="../assets/blue_background.jpg" />
