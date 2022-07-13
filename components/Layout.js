@@ -20,8 +20,8 @@ export default function Layout({ children }){
                 <meta property="og:site_name" content="Helgtandvården.se"/>
                 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-                <link rel="icon" type="image/png" sizes="32x32" href="./Assets/favicon-32x32.png"/>
-                <link rel="icon" type="image/png" sizes="16x16" href="./Assets/favicon-16x16.png"/>
+                <link rel="icon" type="image/png" sizes="32x32" href="https://helgtandvården.se/assets/favicon-32x32.png"/>
+                <link rel="icon" type="image/png" sizes="16x16" href="https://helgtandvården.se/assets/favicon-16x16.png"/>
             </Head>
             <>
                 {children}
