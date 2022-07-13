@@ -6,6 +6,7 @@ export default function Header(){
     const [width, setWidth] = useState(undefined)
 
     useEffect(() => {
+        resizeWindow()
         window.addEventListener('scroll', windowScroll)
         window.addEventListener('resize', resizeWindow)
 
@@ -42,6 +43,14 @@ export default function Header(){
         element.scrollIntoView({behavior: "smooth", block: "end"})
     }
 
+    function isVisible(){
+        if(visible === true){
+            setVisible(false)
+        } else {
+            setVisible(true)
+        }
+    }
+
     return(
         <header>
             <nav>
@@ -51,7 +60,7 @@ export default function Header(){
                     <h4 className="clr-white">Helgtandvården</h4>
                     </a>
                 </Link>
-                <a id="nav-button" aria-label="hidden" onClick={(() => { setVisible(!visible) })}>
+                <a id="nav-button" aria-label="hidden" onClick={isVisible}>
                     {
                         !visible ?
                         <i className="material-icons">menu</i>
